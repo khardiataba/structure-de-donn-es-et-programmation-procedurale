@@ -1,0 +1,40 @@
+ALGORITHM test_orthogonal_with_procedure
+VAR
+   v1 : ARRAY[0..49] OF INTEGER; // Premier vecteur
+   v2 : ARRAY[0..49] OF INTEGER; // Deuxième vecteur
+   n : INTEGER;                  // Dimension des vecteurs
+   nbPaires : INTEGER;           // Nombre de paires de vecteurs à tester
+   i, j : INTEGER;               // Variables de boucle
+   ps : INTEGER;                 // Produit scalaire
+BEGIN
+   Write("Entrer la dimension des vecteurs : ");
+   Read(n); // Lire la taille (dimension) des vecteurs
+
+   Write("Entrer le nombre de paires de vecteurs : ");
+   Read(nbPaires); // Lire combien de paires on veut tester
+
+   // Répéter pour chaque paire de vecteurs
+   FOR i FROM 1 TO nbPaires STEP 1 DO
+      Write("Saisir les ", n, " composantes du vecteur v1 :");
+      // Lire les composantes du premier vecteur
+      FOR j FROM 0 TO n - 1 STEP 1 DO
+         Read(v1[j]);
+      END_FOR
+
+      Write("Saisir les ", n, " composantes du vecteur v2 :");
+      // Lire les composantes du deuxième vecteur
+      FOR j FROM 0 TO n - 1 STEP 1 DO
+         Read(v2[j]);
+      END_FOR
+
+      // Appel de la procédure pour calculer le produit scalaire
+      CALL dot_product(v1, v2, n, ps);
+
+      // Vérifier si le produit scalaire est nul (donc vecteurs orthogonaux)
+      IF ps = 0 THEN
+         Write("Les vecteurs ", i, " sont orthogonaux."); // Produit scalaire nul
+      ELSE
+         Write("Les vecteurs ", i, " ne sont pas orthogonaux."); // Produit scalaire non nul
+      END_IF
+   END_FOR
+END

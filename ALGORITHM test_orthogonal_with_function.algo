@@ -1,0 +1,38 @@
+ALGORITHM test_orthogonal_with_function
+VAR
+   v1 : ARRAY[0..49] OF INTEGER; // Premier vecteur
+   v2 : ARRAY[0..49] OF INTEGER; // Deuxième vecteur
+   n : INTEGER;                  // Dimension des vecteurs
+   nbPaires : INTEGER;           // Nombre de paires à tester
+   i, j : INTEGER;
+   ps : INTEGER;                 // Résultat du produit scalaire
+BEGIN
+   Write("Entrer la dimension des vecteurs : ");
+   Read(n); // Lire la taille des vecteurs
+
+   Write("Entrer le nombre de paires de vecteurs : ");
+   Read(nbPaires); // Lire le nombre de paires
+
+   // Répéter pour chaque paire
+   FOR i FROM 1 TO nbPaires STEP 1 DO
+      Write("Saisir les ", n, " composantes du vecteur v1 :");
+      FOR j FROM 0 TO n - 1 STEP 1 DO
+         Read(v1[j]); // Lire composantes du vecteur v1
+      END_FOR
+
+      Write("Saisir les ", n, " composantes du vecteur v2 :");
+      FOR j FROM 0 TO n - 1 STEP 1 DO
+         Read(v2[j]); // Lire composantes du vecteur v2
+      END_FOR
+
+      // Appel de la fonction pour calculer le produit scalaire
+      ps := dot_product(v1, v2, n);
+
+      // Vérification orthogonalité
+      IF ps = 0 THEN
+         Write("Les vecteurs ", i, " sont orthogonaux.");
+      ELSE
+         Write("Les vecteurs ", i, " ne sont pas orthogonaux.");
+      END_IF
+   END_FOR
+END

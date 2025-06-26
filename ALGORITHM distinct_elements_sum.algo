@@ -1,0 +1,53 @@
+ALGORITHM distinct_elements_sum
+VAR
+   A : ARRAY[0..49] OF INTEGER;
+   B : ARRAY[0..49] OF INTEGER;
+   i, j, nA, nB, sum : INTEGER;
+   isCommon : BOOLEAN;
+BEGIN
+   // Lire la taille des deux tableaux
+   Read(nA); // taille du tableau A
+   Read(nB); // taille du tableau B
+
+   // Lecture des éléments du tableau A
+   FOR i FROM 0 TO nA - 1 STEP 1 DO
+      Read(A[i]);
+   END_FOR
+
+   // Lecture des éléments du tableau B
+   FOR i FROM 0 TO nB - 1 STEP 1 DO
+      Read(B[i]);
+   END_FOR
+
+   sum := 0;
+
+   // Vérifier les éléments uniques de A
+   FOR i FROM 0 TO nA - 1 STEP 1 DO
+      isCommon := FALSE;
+      FOR j FROM 0 TO nB - 1 STEP 1 DO
+         IF A[i] = B[j] THEN
+            isCommon := TRUE;
+         END_IF
+      END_FOR
+      IF isCommon = FALSE THEN
+         sum := sum + A[i];
+      END_IF
+   END_FOR
+
+   // Vérifier les éléments uniques de B
+   FOR i FROM 0 TO nB - 1 STEP 1 DO
+      isCommon := FALSE;
+      FOR j FROM 0 TO nA - 1 STEP 1 DO
+         IF B[i] = A[j] THEN
+            isCommon := TRUE;
+         END_IF
+      END_FOR
+      IF isCommon = FALSE THEN
+         sum := sum + B[i];
+      END_IF
+   END_FOR
+
+   // Affichage final
+   Write("La somme des éléments distincts est : ");
+   Write(sum);
+END

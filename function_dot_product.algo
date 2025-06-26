@@ -1,0 +1,16 @@
+// Fonction qui calcule le produit scalaire et retourne un entier
+FUNCTION dot_product(v1 : ARRAY[0..49] OF INTEGER,
+                     v2 : ARRAY[0..49] OF INTEGER,
+                     taille : INTEGER) : INTEGER
+VAR
+   i, ps : INTEGER;
+BEGIN
+   ps := 0; // Initialisation
+
+   // Addition des produits des composantes
+   FOR i FROM 0 TO taille - 1 STEP 1 DO
+      ps := ps + v1[i] * v2[i];
+   END_FOR
+
+   RETURN ps; // Retourner le résultat
+END

@@ -1,0 +1,15 @@
+// Cette procédure calcule le produit scalaire de deux vecteurs v1 et v2
+PROCEDURE dot_product(v1 : ARRAY[0..49] OF INTEGER,
+                      v2 : ARRAY[0..49] OF INTEGER,
+                      taille : INTEGER,
+                      VAR ps : INTEGER)
+VAR
+   i : INTEGER;
+BEGIN
+   ps := 0; // Initialiser la somme du produit scalaire à 0
+
+   // Pour chaque composante des vecteurs
+   FOR i FROM 0 TO taille - 1 STEP 1 DO
+      ps := ps + v1[i] * v2[i]; // Ajouter le produit des composantes correspondantes
+   END_FOR
+END
